@@ -1,0 +1,11 @@
+/*.pdf
+*.aux
+*.bbl
+*.blg
+p.nav
+p.out
+p.snm
+p.toc
+
+*old*
+/wait/
