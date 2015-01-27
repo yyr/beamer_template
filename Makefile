@@ -1,6 +1,7 @@
 MAKE = make
 MAINDOC = p
 RM = /bin/rm
+PDFLATEX = xelatex --synctex=1
 
 SOURCES = $(wildcard *.tex)
 
@@ -12,17 +13,17 @@ SOURCES = $(wildcard *.tex)
 		${MAINDOC}/index.html
 
 %.pdf: $(SOURCES)
-	if pdflatex $*.tex </dev/null; then \
+	if $(PDFLATEX) $*.tex </dev/null; then \
 		true; \
 	else \
 		stat=$$?; touch $*.pdf; exit $$stat; \
 	fi
 
 all: $(MAINDOC).pdf
-
+pdf: $(MAINDOC).pdf
 
 clean:
-	$(RM) -f *.aux  *.blg *.log *~
+	$(RM) -f *.aux  *.blg *.log *~ *.bbl
 
 cleanall : clean
 	$(RM) -f *.dvi *.cfg *.idx *.ilg *.ind *.toc *.lot *.lof *.pdf *.out
